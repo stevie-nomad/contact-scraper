@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scraper Hub</title>
+  <style>
+    body {
+      width: 400px;
+      padding: 15px;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+    .status {
+      font-weight: bold;
+      margin-left: 10px;
+    }
+    .button-group {
+      display: flex;
+      gap: 10px;
+    }
+    button {
+      padding: 10px;
+      background-color: #2196F3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      flex: 1;
+    }
+    button:hover {
+      background-color: #1976D2;
+    }
+    #clearBtn {
+      background-color: #dc3545;
+    }
+    #clearBtn:hover {
+      background-color: #c82333;
+    }
+    .count-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: #666;
+      padding: 8px;
+      background-color: #f8f9fa;
+      border-radius: 4px;
+    }
+    .contacts-container {
+      display: flex;
+      gap: 15px;
+    }
+    .contact-list {
+      flex: 1;
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 8px;
+      background-color: #f9f9f9;
+    }
+    .contact-list h3 {
+      margin: 0 0 8px 0;
+      font-size: 14px;
+      color: #333;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .contact-item {
+      padding: 8px;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      background-color: white;
+    }
+    .contact-email, .contact-phone {
+      font-weight: bold;
+      color: #2196F3;
+      word-break: break-all;
+    }
+    .related-contacts {
+      font-size: 12px;
+      color: #666;
+      margin: 4px 0;
+      padding: 4px;
+      background-color: #f8f9fa;
+      border-radius: 3px;
+    }
+    .contact-url {
+      font-size: 11px;
+      color: #999;
+      margin-top: 4px;
+      word-break: break-all;
+    }
+    .no-contacts {
+      color: #666;
+      text-align: center;
+      padding: 10px;
+      font-style: italic;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div style="background-color:royalblue">
+      <h2 style="text-align: center; font-size:30px; color:honeydew">ScraperHub</h2>
+    </div>
+    <div style="display: flex; align-items: center;">
+      <label class="switch">
+        <input type="checkbox" id="toggleSwitch">
+        <span class="slider"></span>
+      </label>
+      <span class="status" id="status">OFF</span>
+    </div>
+    <div class="count-info">
+      <span>Emails found: <span id="emailCount">0</span></span>
+      <span>Phones found: <span id="phoneCount">0</span></span>
+    </div>
+    <div class="contacts-container">
+      <div class="contact-list">
+        <h3>Emails</h3>
+        <div id="emailList">
+          <div class="no-contacts">No emails found yet</div>
+        </div>
+      </div>
+      <div class="contact-list">
+        <h3>Phone Numbers</h3>
+        <div id="phoneList">
+          <div class="no-contacts">No phone numbers found yet</div>
+        </div>
+      </div>
+    </div>
+    <div class="button-group">
+      <button id="downloadBtn">Download CSV</button>
+      <button id="clearBtn">Clear History</button>
+    </div>
+  </div>
+  <script src="browser-polyfill.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html> 

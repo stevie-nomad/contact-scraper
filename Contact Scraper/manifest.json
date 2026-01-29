@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Contact Scraper",
+  "version": "1.0",
+  "description": "Scrapes emails and phone numbers from websites and exports them to CSV",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "downloads",
+    "tabs"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "script": ["browser-polyfill.js", "background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["browser-polyfill.js", "content.js"]
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "contact-scraper@example.com",
+      "strict_min_version": "109.0"
+    }
+  }
+} 
